@@ -1,0 +1,19 @@
+.car-form-container {
+  display: flex;
+  flex-direction: column;
+
+  h4 {
+    margin-top: 2rem;
+    font-size: 2rem;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: lightblue;
+    padding: 1rem;
+  }
+}

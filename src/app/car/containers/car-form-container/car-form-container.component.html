@@ -1,0 +1,11 @@
+<div class="car-form-container">
+  <h4>Car Form</h4>
+  <app-car-form *ngIf="formData$ | async as data" [catFormData]="data"
+    (submitClicked)="onSubmitClicked($event)">
+  </app-car-form>
+  <div *ngIf="lastCreatedCar$ | async as car">
+    <p>Model: {{car.model}}</p>
+    <p>Description: {{car.description}}</p>
+  </div>
+</div>
+

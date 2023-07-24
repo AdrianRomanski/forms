@@ -1,0 +1,43 @@
+<form (ngSubmit)="onSubmitClicked()" [formGroup]="form" class="car-form">
+  <mat-form-field appearance="fill">
+    <mat-label>Model</mat-label>
+    <input [formControl]="model" matInput placeholder="Placeholder">
+    <mat-error *ngIf="modelRequiredInvalid">Model required</mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Description</mat-label>
+    <input [formControl]="description" matInput placeholder="Placeholder">
+    <mat-error *ngIf="descriptionRequiredInvalid">Description required</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Brand id</mat-label>
+    <mat-select [formControl]="brandId">
+      <mat-option *ngFor="let carBrand of data.brands" [value]="carBrand.id">{{carBrand.name}}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="brandId.hasError('required')">You must make a selection</mat-error>
+  </mat-form-field>
+  <div class="security-features">
+    <h4>Security Features</h4>
+    <mat-radio-group *ngFor="let control of securityFeaturesControls; let index"
+                     [formControl]="castAbstractControlToFormControl(control)">
+      <mat-radio-button *ngFor="let feature of data.securityFeatures"
+                        [value]="feature" class="example-radio-button">
+        {{feature.name}}
+      </mat-radio-button>
+    </mat-radio-group>
+    <div>
+      <button (click)="onPlusClicked()" extended mat-fab type="button">+</button>
+    </div>
+  </div>
+  <div class="comfort-features">
+    <h4>Comfort Features</h4>
+    <div [formGroup]="comfortFeatures">
+      <mat-checkbox *ngFor="let comfortFeature of data.comfortFeatures" [formControlName]="comfortFeature.name">
+        {{comfortFeature.name}}
+      </mat-checkbox>
+    </div>
+    <div>
+  </div>
+  <button [disabled]="!form.valid" color="primary" mat-raised-button type="submit">Submit</button>
+  </div>
+</form>
